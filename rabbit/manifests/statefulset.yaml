@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq
+spec:
+  serviceName: "not-applicable"
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management # official rabbitmq image that provides GUI for managing our queues
+          ports:  # need 2 ports - 1 for GUI and 1 to handle messages that we send to the queue
+            - name: http
+              protocol: TCP
+              containerPort: 15672
+            - name: amqp  # advanced message queueing protocol
+              protocol: TCP
+              containerPort: 5672
+          envFrom:
+            - configMapRef:
+                name: rabbitmq-configmap
+            - secretRef:
+                name: rabbitmq-secret
+          volumeMounts:
+            - mountPath: "/var/lib/rabbitmq"  # this is the path within the container that we want mounted. rabbit mq will store the persisted messages 
+            # and queues in this directory/ path. and the volume will be our storage that we connect to our kubernetes cluster.
+              name: rabbitmq-volume
+      volumes:
+        - name: rabbitmq-volume
+          persistentVolumeClaim:
+            claimName: rabbitmq-pvc

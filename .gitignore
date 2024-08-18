@@ -1,0 +1,5 @@
+.DS_Store
+/auth/venv
+/converter/venv
+/gateway/venv
+/notification/venv
