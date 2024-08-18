@@ -11,7 +11,7 @@ Please don't forget to ⭐ this repo if you found it helful.
 
 ## Architecture
 
-! [alt text](app-design.png)
+![alt text](app-design.png)
 
 1. A user will upload a video file and send request to our application. This request is entertained by the API Gateway.
 2. If the user is not logged in, the API gateway sends the request to the Auth service which returns a response with a JWT token. This JWT token will be attached to each subsequent request and will be validated for each request.
@@ -111,16 +111,16 @@ curl --output mp3_download.mp3 -X GET -H 'Authorization: Bearer <JWT_TOKEN>' "ht
 
 Docker Hub
 
-! [alt text](dockerhub.png)
+![alt text](dockerhub.png)
 
 Rabbit MQ GUI
 
-! [alt text](rabbitmq.png)
+![alt text](rabbitmq.png)
 
 K9s (Services as pods)
 
-! [alt text](k9s.png)
+![alt text](k9s.png)
 
 Email Notifications
 
-! [alt text](emails.png)
+![alt text](emails.png)
