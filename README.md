@@ -21,6 +21,7 @@ Please don't forget to ⭐ this repo if you found it helful.
 6. Apart from this, the consumer service pushes a message back into the message queue with details of mp3 file created.
 7. The notification service, which is continuously polling the message queue reads this message and sends an email notification to user which contains the audio file id informing that their mp3 file is ready to download.
 8. The user then uses the id provided in the email to download their audio files.
+
 ## Tech Stack
 
 - Python
@@ -35,6 +36,7 @@ Please don't forget to ⭐ this repo if you found it helful.
 - Docker 
 - Kubernetes
 - RabbitMQ
+
 ## Installation & Setup
 
 1. Clone this repo to your local system.
@@ -88,7 +90,8 @@ Select *type* as ```Classic``` and *durability* as ```Durable``` for both queues
 8. **Pro Tip:** If you get stuck and find yourself debugging any service or code, scale down the replicas of services to ease debugging using the following command:
     
     ```kubectl scale deployment --replicas=1  <SERVICE-1> <SERVICE-2> <SERVICE-3>```
-    ## Usage
+
+## Usage
 
 To test services and functionalities, you can use Postman or CURL commands. Below are the CURL commands you can use:
 
@@ -107,6 +110,7 @@ curl -X POST -F 'file=@./test.mp4' -H 'Authorization: Bearer <JWT_TOKEN>' http:/
 ```
 curl --output mp3_download.mp3 -X GET -H 'Authorization: Bearer <JWT_TOKEN>' "http://mp3converter.com/download?fid=<ID_FROM_EMAIL>"
 ```
+
 ## Screenshots
 
 Docker Hub
